@@ -1,11 +1,11 @@
 import throttle from 'lodash.throttle';
 const form = document.querySelector('form');
 const key = 'feedback-form-state';
-let storageDataObj;
+
 // check if storage has data when the page loaded
 const storageData = localStorage.getItem(key);
 if (storageData) {
-  storageDataObj = JSON.parse(storageData);
+  let storageDataObj = JSON.parse(storageData);
 
   form.email.value = storageDataObj.email;
   form.message.value = storageDataObj.message;
