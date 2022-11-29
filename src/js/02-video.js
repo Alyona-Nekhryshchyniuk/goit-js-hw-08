@@ -16,7 +16,6 @@ player.on('timeupdate', throttle(getCurrentPlayTime, 1000));
 const getSecFromStorage = () => {
   return JSON.parse(localStorage.getItem('videoplayer-current-time'));
 };
-
 if (localStorage.getItem('videoplayer-current-time')) {
   player.setCurrentTime(getSecFromStorage()).then(function (seconds) {
     console.log(`Last time you stopped video on ${seconds} seconds`);
