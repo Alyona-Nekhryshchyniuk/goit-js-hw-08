@@ -10,14 +10,15 @@ const getCurrentPlayTime = function (data) {
     JSON.stringify(data.seconds)
   );
 };
-// const currentPlayTimeInSec = _.throttle(getCurrentPlayTime, 1000);
-let y = throttle(getCurrentPlayTime, 1000);
-player.on('timeupdate', y);
+
+player.on('timeupdate', throttle(getCurrentPlayTime, 1000));
 
 const getSecFromStorage = () => {
   return JSON.parse(localStorage.getItem('videoplayer-current-time'));
 };
 
-player.setCurrentTime(getSecFromStorage()).then(function (seconds) {
-  console.log(`Last time you stopped video on ${seconds} seconds`);
-});
+if (getSecFromStorage) {
+  player.setCurrentTime(getSecFromStorage()).then(function (seconds) {
+    console.log(`Last time you stopped video on ${seconds} seconds`);
+  });
+}
